@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Knockoutjs.com - Control types example - jsFiddle demo</title>
+    <script type='text/javascript' src='//code.jquery.com/jquery-1.9.1.js'></script>
+    <script type='text/javascript' src="http://knockoutjs.com/downloads/knockout-3.0.0.js"></script>
+    <script type='text/javascript' src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+  </head>
+
+  <body>
+  
+      
+    
+      <div  id="questionContainer">
+        <div id="questionList" data-bind="foreach: questionBank.currentPageData">
+          <p data-bind="text: value"></p>
+          <select id="selector" data-mini="true" data-inline="true" data-native-menu="false" data-bind="options: options, value: selected"></select>
+          <a href="#" data-role="button" data-bind="click: $root.questionBank.movePrevious" data-mini="true" data-inline="true">Prev</a>
+          <a href="#" data-role="button" data-bind="click: $root.questionBank.moveNext" data-mini="true" data-inline="true">Next</a>
+        </div>
+        <div id="loadme"></div>
+      </div>
+
+    <div id="jqmcontainer" style="display: none">
+      <div data-role="page" id="splashscreen" data-theme="e">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a">
+              <img src="logo.png" style="height: 12em; padding-left: 10px;" />
+            </div>
+            <div class="ui-block-b">
+              <p style="text-align: right; padding-right:10px;">Alpha 0.1.1
+                <br />Updated
+                <br />5 Jan 2014</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <center>
+            <h1>Welcome</h1>
+          </center>
+          <p> <b>Special Blood Request</b> aims to make it quick and easy to learn about, look up and test your knowledge of the indications for irradiated and cytomegalovirus (CMV) negative blood components. The app is designed for:</p>
+          <ul class="plainlist">
+            <li>Doctors who prescribe and request blood transfusions.</li>
+            <li>Biomedical scientists who process blood requests.</li>
+            <li>Nurses and midwives who administer or prescribe transfusions.</li>
+            <li>Medical trainees who may be required to undertake any of the above.</li>
+            <li>Patients with special requirements, and their families.</li>
+          </ul>
+          <p>Press continue to show the terms of use.</p><a href="#terms" data-role="button" data-theme="b" data-icon="arrow-r" data-iconpos="right">Continue<br /></a>
+        </div>
+      </div>
+      <div data-role="page" id="terms" data-theme="e">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#splashscreen">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>Terms of use</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h1>Terms of use</h1>
+          <p>Use of the app is subject to these terms. Please read them.</p> <a href="#front" data-icon="check" data-theme="b" data-role="button">Yes, I agree to the terms</a>
+          <h2>Disclaimer</h2>
+          <p>Special Blood Request ("the app") was created during a PhD research project and is made available for evaluation use only. There may be inaccuracies in the content. The developers and contributors cannot be held liable for any harm resulting from the use of the app. The app is not intended to be a substitute for local hospital guidelines, professional medical advice, diagnosis, or treatment. Always seek the advice of a qualified health provider with any questions regarding medical matters.</p>
+          <p>The app is based on (but in no way endorsed by) the British Committee for Standards in Haematology (BCSH) 2010 guidelines on the irradation of blood components and the 2012 position statement on the use of CMV negative blood components by the Advisory Committee on the Safety of Blood, Tissues and Organs (SaBTO).</p>
+          <p>Recommendations for irradiated and CMV negative blood components is only displayed in the app when it is indicated or contraindicated in these national UK guidelines. Guidance may not be appropriate in all patient situations. Local hospital policies may differ.</p>
+          <h2>Data protection - what data we collect and how we use it</h2>
+          <p>The app is developed for a research project seeking to evaluate and improve the design of clinical apps. The use of the app is therefore monitored. We may publish our findings in scholarly publications, observing the usual academic principles of anonymity, informed consent and voluntary participation. The following data is recorded:</p>
+          <ul>
+            <li>Which pages you visit and for how long.</li>
+            <li>Information about your computing device (operating system, screen resolution, browser, IP address).</li>
+            <li>Your approximate geographical location (country, city).</li>
+            <li>Your responses to the quiz.</li>
+            <li>Keywords that you input in the app's search functionality.</li>
+          </ul>
+          <p>If you choose to provide additional feedback (using the 'leave feedback' button), we may correlate your browsing behaviour with your feedback answers to help us better understand the strengths and weaknesses of the app design. To do this we store a browser cookie on your device.</p>
+          <p>We do not collect any personally identifying information, unless you disclose this through the online feedback form.</p>
+          <h2>No warranty</h2>
+          <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p> <a href="#front" data-icon="check" data-theme="b" data-role="button">Yes, I agree to the terms</a>
+        </div>
+      </div>
+      <div data-role="page" id="front" data-theme="e">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-b">
+            <div class="ui-block-a">
+              <a href="#splashscreen">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b">
+              <p>Main Menu</p>
+            </div>
+            <div class="ui-block-c"> <a href="#about" data-role="button">About</a>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <center>
+            <h1>Main menu</h1>
+            <div class="ui-grid-a" style="max-width: 500px">
+              <div class="ui-block-a"> <a href="#learn" data-iconpos="top" data-icon="info" data-role="button" data-theme="b">1. Information<br />
+              <br /></a>
+              </div>
+              <div class="ui-block-b"> <a href="#list" data-iconpos="top" data-icon="search" data-role="button" data-theme="b">2. Indications<br />
+              <br /></a>
+              </div>
+              <div class="ui-block-a"> <a href="#step1" data-iconpos="top" data-icon="check" data-role="button" data-theme="b">3. Checklist<br />
+              <br /></a>
+              </div>
+              <div class="ui-block-b"> <a href="#quiz" data-iconpos="top" data-icon="star" data-role="button" data-theme="b">4. Quiz<br />
+              <br /></a>
+              </div>
+            </div>
+            <p>Press a button.</p>
+          </center>
+        </div>
+      </div>
+      <div data-role="page" id="learn" data-theme="e" data-prev="#front" data-next="#safety">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#front">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>1. Information</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h1>1. Information</h1>
+          <br />
+          <ul data-role="listview" data-inset="false" data-theme="b" data-dividertheme="a">
+            <li data-role="list-divider">Table of contents</li>
+            <li> <a href="#safety">1.1 Patient safety</a>
+            </li>
+            <li> <a href="#mistakes">1.2 Mistakes</a>
+            </li>
+            <li> <a href="#causes">1.3 Causes</a>
+            </li>
+            <li> <a href="#prevention">1.4 Prevention</a>
+            </li>
+            <li> <a href="#references">1.5 References</a>
+            </li>
+            <li> <a href="#glossary">1.6 Glossary</a>
+            </li>
+          </ul>
+          <br />
+          <p>Select a topic from the list or tap the button below to start from the beginning.</p><a href="#safety" data-role="button" data-theme="b" data-icon="arrow-r" data-iconpos="right">1.1 Patient safety</a>
+        </div>
+      </div>
+      <div data-role="page" id="safety" data-theme="e" data-prev="#learn" data-next="#mistakes">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#learn">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>1.1 Patient safety</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h3>1.1 Patient safety</h3>
+          <p>Failure to provide <a href="javascript:%20showWord('irradiation')" class="definition">irradiated</a> cellular <a href="javascript:%20showWord('components')" class="definition">blood components</a>
+            may expose <a href="javascript:showWord('at-risk')" class="definition">at-risk
+          patients</a> to transfusion-associated Graft versus Host Disease <a href="javascript:%20showWord('gvhd')" class="definition">TA-GvHD</a>. This is a very rare, but life-threatening condition <a href="javascript:%20showSource('bcsh2010');" class="reference">BCSH 2010, p.37</a>.</p>
+          <p>Red cells and platelets supplied through the UK Blood Services are <a href="javascript:%20showWord('leucodepletion')" class="definition">leucocyte
+          depleted</a>  <a href="javascript:%20showSource('bcsh2010');" class="reference">SaBTO 2012, p.1</a>. However removal of leucocytes (white cells) is not a substitute for irradiation, which prevents TA-GvHD by inactivating residual donor lymphocytes <a href="javascript:%20showSource('bcsh2010');" class="reference">BCSH 2010, p.49</a>.</p>
+          <p>Although leucodepletion provides significant protection against <a href="javascript:%20showWord('cmv')" class="definition">cytomegalovirus</a> (CMV) infection, cellular blood components should be provided as CMV negative to protect vulnerable patients against transfusion-transmitted CMV infection <a href="javascript:%20showSource('sabto2012');" class="reference">SaBTO
+          2012</a>.</p>
+          <div class="ui-grid-a">
+            <div class="ui-block-a"> <a href="#learn" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left">1. Information</a>
+            </div>
+            <div class="ui-block-b"> <a href="#mistakes" data-theme="b" data-role="button" data-icon="arrow-r" data-iconpos="right">1.2 Mistakes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-role="page" id="mistakes" data-theme="e" data-prev="#safety" data-next="#causes">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#learn">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>1.2 Mistakes</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h3>1.2 Mistakes</h3>
+          <p>Almost three million blood components are issued annually in UK <a href="javascript:%20showSource('shot2009');" class="reference">SHOT 2009, p.11</a>. Of these, approximately 10% are irradiated <a href="javascript:%20showSource('shot2010');" class="reference">SHOT 2010, p.129</a>.</p>
+          <p>In the last five years, more than five hundred mistakes involving irradiated and CMV negative blood components were reported to the Serious Hazards of Transfusion (SHOT) UK haemovigilance scheme (Figure 1).</p>
+          <p>These were incidents where blood components failed to be provided as irradiated and/or CMV negative to at-risk patients according to guidelines.</p>
+          <img src="graph.png" style="display: block; margin: 0 auto; width:100%;" />
+          <p style="line-height: 1.1em;"> <b>Figure 1:</b> Specific Requirements Not Met (SRNM) reports by year and source of error. Clinical errors include failure to communicate the need for special components to the lab. Lab errors are when the request was made but not acted upon <a href="javascript:%20showSource('shot2010');" class="reference">SHOT 2010, p.27</a>. SHOT data used with permission and provided courtesy of Dr. Paula Bolton-Maggs, Debbi Poles and Alison Watts.</p>
+          <div class="ui-grid-a">
+            <div class="ui-block-a"> <a href="#safety" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left">1.1 Patient safety</a>
+            </div>
+            <div class="ui-block-b"> <a href="#causes" data-theme="b" data-role="button" data-icon="arrow-r" data-iconpos="right">1.3 Causes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-role="page" id="causes" data-theme="e" data-prev="#mistakes" data-next="#prevention">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#learn">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>1.3 Causes</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h3>1.3 Causes</h3>
+          <p>There are many underlying reasons for why special requirements fail to be provided to at-risk patients, as these SHOT cases illustrate:</p>
+          <div data-role="collapsible-set" data-theme="f" data-content-theme="f">
+            <div data-role="collapsible" data-collapsed-icon="alert">
+              <h3>Poor knowledge of the indications</h3>
+              <p>"The admitting doctor noted the past history of Hodgkin's disease but was not aware of the requirements for irradiated blood." <a href="javascript:%20showSource('shot2011');" class="reference">SHOT 2011,
+              p.26</a>
+              </p>
+            </div>
+            <div data-role="collapsible" data-collapsed-icon="alert">
+              <h3>Request form not filled out correctly</h3>
+              <p>"A request form for blood components for a patient with CLL on fludarabine was completed by a haematology nurse, and checked and signed by a junior doctor who also prescribed the components. The need for irradiated blood was not indicated on the request form or the prescription." <a href="javascript:%20showSource('shot2008');" class="reference">SHOT 2008,
+              p.46</a>
+              </p>
+            </div>
+            <div data-role="collapsible" data-collapsed-icon="alert">
+              <h3>Failure to check medical record</h3>
+              <p>"An elderly man was transfused 9 units of blood for chronic anaemia. Subsequently a haematology registrar found that he had been treated with cladarabine several years before." <a href="javascript:%20showSource('shot2012');" class="reference">SHOT 2012,
+              p.32</a>
+              </p>
+            </div>
+            <div data-role="collapsible" data-collapsed-icon="alert">
+              <h3>Shared patient care</h3>
+              <p>"A patient was transferred from his primary hospital, where he had undergone a stem-cell transplant, to another hospital within the same Trust in order to access an ITU bed. [...] Irradiated components were not requested due to a lack of communication between the clinicians, and the laboratory records were separate from those at the originating hospital." <a href="javascript:%20showSource('shot2010');" class="reference">SHOT
+              2010, p.41</a>
+              </p>
+            </div>
+            <div data-role="collapsible" data-collapsed-icon="alert">
+              <h3>Wrong blood component transfused</h3>
+              <p>"No patient identification was taken to the blood fridge, and as a result the wrong unit of red cells was removed by a registered nurse and taken to the ward for an 81-year-old female patient with chronic lymphocytic leukaemia (CLL). On the ward another nurse administering the transfusion assumed that the checks had been completed, and because of this assumption no bedside checks were performed. The patient received non-irradiated group A D positive red cells, instead of irradiated O D positive red cells. The error was noticed when the patient asked whether the unit was irradiated. Consequently &lt;50 mL was transfused." <a href="javascript:%20showSource('shot2008');" class="reference">SHOT 2008,
+              p.31</a>
+              </p>
+            </div>
+            <div data-role="collapsible" data-collapsed-icon="alert">
+              <h3>Incorrect use of warning flags</h3>
+              <p>"A patient required irradiated blood because of previous chemotherapy. The transfusion laboratory had received notification of this special requirement and added the information to the LIMS. The special requirement flag was subsequently removed from the LIMS in error. From the time the flag was removed to the time it was discovered, the patient had received 15 units of red cells and 5 units of platelets that had not been irradiated." <a href="javascript:%20showSource('shot2012');" class="reference">SHOT
+              2012, p.56</a>
+              </p>
+            </div>
+          </div>
+          <p>Press to expand list items.</p>
+          <div class="ui-grid-a">
+            <div class="ui-block-a"> <a href="#mistakes" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left">1.2 Mistakes</a>
+            </div>
+            <div class="ui-block-b"> <a href="#prevention" data-theme="b" data-role="button" data-icon="arrow-r" data-iconpos="right">1.4 Prevention</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-role="page" id="prevention" data-theme="e" data-prev="#causes" data-next="#references">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#learn">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>1.4 Prevention</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h3>1.4 Prevention</h3>
+          <p>SHOT has made several recommendations aimed at reducing mistakes. Some of these are to:</p>
+          <div data-role="collapsible-set" data-theme="h" data-content-theme="h">
+            <div data-role="collapsible" data-collapsed-icon="check">
+              <h3>Increase knowledge of special requirements</h3>
+              <p>"All haematology units must devise specific educational programmes for all their staff members providing the rationale and indications for specialist components and this information should be accessible at the time of making the requests for blood components." <a href="javascript:%20showSource('shot2011');" class="reference">SHOT 2011,
+              p.28</a>
+              </p>
+              <p>"The importance of irradiation, and the rationale behind it should be emphasised during teaching of junior haematology and oncology doctors. This education is part of the curriculum for specialist trainees, but the junior pre-specialist doctors in these areas may remain ignorant despite being frequently called upon to order components." <a href="javascript:%20showSource('shot2008');" class="reference">SHOT 2008,
+              p.26</a>
+              </p>
+            </div>
+            <div data-role="collapsible" data-collapsed-icon="check">
+              <h3>Ensure special blood components are ordered correctly</h3>
+              <p>"Local mechanisms for ordering and prescribing components need to facilitate correct ordering, and remind clinical and laboratory personnel where possible" <a href="javascript:%20showSource('shot2011');" class="reference">SHOT 2011, p.26</a>
+              </p>
+            </div>
+            <div data-role="collapsible" data-collapsed-icon="check">
+              <h3>Educate patients who have special requirements</h3>
+              <p>"Patients who require irradiated and other special products should be provided with an appropriate card [...] Patients with cards noting special requirements should be educated about their meaning and importance, in particular always to show these to clinical staff on admission to any hospital." <a href="javascript:%20showSource('shot2012');" class="reference">SHOT 2012, p.34</a>
+              </p>
+            </div>
+            <div data-role="collapsible" data-collapsed-icon="check">
+              <h3>Conduct thorough bedside checks</h3>
+              <p>"The final 'bedside' check is the last opportunity to ensure that the correct unit or component has been collected for the patient receiving the transfusion. Complete and thorough bedside checks involving one or two staff members must be completed independently and without interruption. " <a href="javascript:%20showSource('shot2011');" class="reference">SHOT
+              2013, p.61</a>
+              </p>
+              <p>"Every person in the transfusion process must perform rigorous identity checks at each point and ensure that the component collected is the one prescribed. The use of a transfusion checklist is recommended." <a href="javascript:%20showSource('shot2011');" class="reference">SHOT 2013,
+              p.62</a>
+              </p>
+            </div>
+            <div data-role="collapsible" data-collapsed-icon="check">
+              <h3>Use warning flags with care</h3>
+              <p>"Computer prompts/warnings/flags are a valuable tool for trying to prevent human error through 'slips'; but staff must also have the underpinning knowledge to understand and act appropriately to a warning." <a href="javascript:%20showSource('shot2011');" class="reference">SHOT 2012,
+              p.7</a>
+              </p>
+              <p>"The addition of these warnings/flags/notes is a manual procedure and is itself prone to error and should be controlled, for example, entered by one BMS and checked by a second." <a href="javascript:%20showSource('shot2011');" class="reference">SHOT 2012,
+              p.51</a>
+              </p>
+            </div>
+          </div>
+          <p>Press to expand list items.</p>
+          <p>For more details and recommendations, please refer to the latest SHOT report. <a href="javascript:%20showSource('shot2013');" class="reference">SHOT 2013</a>
+          </p>
+          <div class="ui-grid-a">
+            <div class="ui-block-a"> <a href="#causes" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left">1.3 Causes</a>
+            </div>
+            <div class="ui-block-b"> <a href="#references" data-theme="b" data-role="button" data-icon="arrow-r" data-iconpos="right">1.5 References</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-role="page" id="howto" data-theme="e" data-prev="#prevention" data-next="#references">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#learn">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>1.5 How to use the app</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <div class="ui-grid-a">
+            <div class="ui-block-a"> <a href="#prevention" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left">1.4 Prevention</a>
+            </div>
+            <div class="ui-block-b"> <a href="#references" data-theme="b" data-role="button" data-icon="arrow-r" data-iconpos="right">1.6 References</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-role="page" id="references" data-theme="e" data-prev="#howto" data-next="#glossary">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#learn">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>1.5 References</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h3>1.5 References</h3>
+          <div class="ui-grid-a">
+            <div class="ui-block-a"> <a href="#" data-icon="arrow-d" data-role="button" data-theme="b" id="expandReferences">Expand all</a>
+            </div>
+            <div class="ui-block-b"> <a href="#" data-icon="arrow-u" data-iconpos="right" data-role="button" data-theme="b" id="collapseReferences">Collapse all</a>
+            </div>
+          </div>
+          <div data-role="collapsible-set" data-theme="b" data-content-theme="b" data-inset="true" id="referenceCollection">
+            <div data-role="collapsible" id="bcsh2010">
+              <h3>BCSH (2010)</h3>
+              <p>Treleaven, J., Gennery, A., Marsh, J., Norfolk, D., Page, L., Parker, A., Saran, F., Thurston, J. and Webb, D. (2011), Guidelines on the use of irradiated blood components prepared by the British Committee for Standards in Haematology blood transfusion task force. British Journal of Haematology, 152: 35-51. doi: 10.1111/j.1365-2141.2010.08444.x</p>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+                </div>
+                <div class="ui-block-b"> <a href="http://onlinelibrary.wiley.com/doi/10.1111/j.1365-2141.2010.08444.x/full" target="_blank" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="b">Open</a>
+                </div>
+              </div>
+            </div>
+            <div data-role="collapsible" id="htm2007">
+              <h3>HTM (2007)</h3>
+              <p>DBL McClelland (ed) (2007) Handbook of Transfusion Medicine, 4th Ed. Published in the UK by The Stationary Office.</p>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+                </div>
+                <div class="ui-block-b"> <a href="http://www.transfusionguidelines.org.uk/index.aspx?Publication=HTM" target="_blank" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="b">Open</a>
+                </div>
+              </div>
+            </div>
+            <div data-role="collapsible" id="mesh2013">
+              <h3>MESH (2013)</h3>
+              <p>Medical Subject Headings (2013) published by the U.S. National Library of Medicine, National Institutes of Health.</p>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+                </div>
+                <div class="ui-block-b"> <a href="http://www.nlm.nih.gov/mesh/2013/mesh_browser/" target="_blank" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="b">Open</a>
+                </div>
+              </div>
+            </div>
+            <div data-role="collapsible" id="nhsgenetics">
+              <h3>NHS NGGEC (no year)</h3>
+              <p>NHS National Genetics and Genomics Education Centre, glossary item "First-degree relative".</p>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+                </div>
+                <div class="ui-block-b"> <a href="http://www.geneticseducation.nhs.uk/genetics-glossary/181-first-degree-relative" target="_blank" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="b">Open</a>
+                </div>
+              </div>
+            </div>
+            <div data-role="collapsible" id="obu2010">
+              <h3>OBU (2010)</h3>
+              <p>McClelland DBL, Pirie E, Franklin IM (2010) for the EU Optimal Use of Blood Project Partners. The Optimal Blood Use Manual. Published by Scottish National Blood Transfusion Service.</p>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+                </div>
+                <div class="ui-block-b"> <a href="http://www.optimalblooduse.eu" target="_blank" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="b">Open</a>
+                </div>
+              </div>
+            </div>
+            <div data-role="collapsible" id="sabto2012">
+              <h3>SaBTO (2012)</h3>
+              <p>Advisory Committee on the Safety of Blood, Tissues and Organs (SaBTO) (2012) Position statement on cytomegalovirus tested blood components.</p>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+                </div>
+                <div class="ui-block-b"> <a href="https://www.gov.uk/government/publications/sabto-report-of-the-cytomegalovirus-steering-group" target="_blank" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="b">Open</a>
+                </div>
+              </div>
+            </div>
+            <div data-role="collapsible" id="shot2008">
+              <h3>SHOT (2008)</h3>
+              <p>Taylor C, Cohen H, Jones H, et al (2008), on behalf of the Serious Hazards of Transfusion (SHOT) Steering Group. The 2007 Annual SHOT Report.</p>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+                </div>
+                <div class="ui-block-b"> <a href="http://www.shotuk.org/shot-reports/reports-and-summaries-2007/" target="_blank" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="b">Open</a>
+                </div>
+              </div>
+            </div>
+            <div data-role="collapsible" id="shot2009">
+              <h3>SHOT (2009)</h3>
+              <p>Taylor C (Ed.), Cohen H, Mold D, Jones H, et al (2009), on behalf of the Serious Hazards of Transfusion (SHOT) Steering Group. The 2008 Annual SHOT Report.</p>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+                </div>
+                <div class="ui-block-b"> <a href="http://www.shotuk.org/shot-reports/reports-and-summaries-2008/" target="_blank" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="b">Open</a>
+                </div>
+              </div>
+            </div>
+            <div data-role="collapsible" id="shot2010">
+              <h3>SHOT (2010)</h3>
+              <p>Taylor C (Ed.), Cohen H, Mold D, Jones H, et al (2010), on behalf of the Serious Hazards of Transfusion (SHOT) Steering Group. The 2009 Annual SHOT Report.</p>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+                </div>
+                <div class="ui-block-b"> <a href="http://www.shotuk.org/shot-reports/report-and-summary-2009/" target="_blank" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="b">Open</a>
+                </div>
+              </div>
+            </div>
+            <div data-role="collapsible" id="shot2012">
+              <h3>SHOT (2012)</h3>
+              <p>Bolton-Maggs, P (Ed) and Cohen, H (2012) on behalf of the Serious Hazards of Transfusion (SHOT) Steering Group. The 2011 Annual SHOT Report.</p>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+                </div>
+                <div class="ui-block-b"> <a href="http://www.shotuk.org/shot-reports/shot-annual-report-summary-2011/" target="_blank" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="b">Open</a>
+                </div>
+              </div>
+            </div>
+            <div data-role="collapsible" id="shot2013">
+              <h3>SHOT (2013)</h3>
+              <p>Bolton-Maggs P (Ed), Poles D, Watt A, Thomas D and Cohen H (2013) on behalf of the Serious Hazards of Transfusion (SHOT) Steering Group. The 2012 Annual SHOT Report.</p>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+                </div>
+                <div class="ui-block-b"> <a href="http://www.shotuk.org/shot-reports/report-summary-and-supplement-2012/" target="_blank" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="b">Open</a>
+                </div>
+              </div>
+            </div>
+            <div data-role="collapsible" id="ukbts2012">
+              <h3>UKBTS (2012)</h3>
+              <p>Joint UKBTS / HPA Professional Advisory Committee (2012) Position Statement on Granulocyte Therapy. Revised by Edwin Massey, Simon Stanworth and Rebecca Cardigan at the request of the Standing Advisory Committee on Blood Components.</p>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+                </div>
+                <div class="ui-block-b"> <a href="http://www.transfusionguidelines.org.uk/index.aspx?Publication=DL&amp;pageid=1336" target="_blank" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="b">Open</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p>Press to expand an entry. All documents open in a new window.</p>
+          <div class="ui-grid-a">
+            <div class="ui-block-a"> <a href="#prevention" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left">1.4 Prevention</a>
+            </div>
+            <div class="ui-block-b"> <a href="#glossary" data-theme="b" data-role="button" data-icon="arrow-r" data-iconpos="right">1.6 Glossary</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-role="page" id="glossary" data-theme="e" data-prev="#references" data-next="#front">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#learn">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>1.6 Glossary</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h3>1.6 Glossary</h3>
+          <div class="ui-grid-a">
+            <div class="ui-block-a"> <a href="#" data-icon="arrow-d" data-role="button" data-theme="f" id="expandGlossary">Expand all</a>
+            </div>
+            <div class="ui-block-b"> <a href="#" data-icon="arrow-u" data-iconpos="right" data-role="button" data-theme="f" id="collapseGlossary">Collapse all</a>
+            </div>
+          </div>
+          <div data-role="collapsible-set" data-inset="true" data-theme="f" data-content-theme="c" id="glossaryCollection">
+            <div data-role="collapsible" id="at-risk">
+              <h3>At-risk patients</h3>
+              <p>Please consult the list of indications to determine which patient groups are considered at risk of transfusion-associated <a href="javascript:%20showWord('gvhd')" class="definition">Graft versus Host
+              Disease</a> (TA-GvHD) and transfusion-transmitted <a href="javascript:%20showWord('cmv')" class="definition">cytomegalovirus</a>
+                (CMV) infection.</p>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+                </div>
+                <div class="ui-block-b"> <a href="#list" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="b">Indications</a>
+                </div>
+              </div>
+            </div>
+            <div data-role="collapsible" id="components">
+              <h3>Blood components</h3>
+              <p>Blood is separated into five components: red cells, platelets, white cells, fresh frozen plasma and cryoprecipitate <a href="javascript:%20showSource('htm2007')" class="reference">HTM 2007, p. 1</a>. These can be classified into cellular and non-cellular (plasma) components.</p>
+              <h3>Cellular blood components</h3>
+              <p>Platelets, red cells and white cells are cellular blood components that contain leucocytes (white cells).</p>
+              <p>Lymphocytes (a type of white cell) can cause <a href="javascript:%20showWord('gvhd')" class="definition">TA-GvHD</a>. Hence cellular blood components, even if <a href="javascript:%20showWord('leucodepletion')" class="definition">leucodepleted</a>, must be <a href="javascript:%20showWord('irradiation')" class="definition">irradiated</a>
+                to deactivate any residual lymphocytes before transfusion to <a href="javascript:%20showWord('at-risk')" class="definition">at-risk patients</a>
+                <a href="javascript:%20showSource('htm2007')" class="reference">HTM 2007,
+              p. 41</a>.</p>
+              <p>The only exception to this rule is cryopreserved red cells after deglycerolization, because these are washed free of leucocytes <a href="javascript:%20showSource('bcsh2010')" class="reference">BCSH 2010, p.
+              42</a>.</p>
+              <p>Monocytes (another type of white cell) may carry latent <a href="javascript:%20showWord('cmv')" class="definition">cytomegalovirus</a>
+                (CMV). For this reason SaBTO recommend cellular blood components be provided leucodepleted and CMV negative to high risk patients <a href="javascript:%20showSource('sabto2012')" class="reference">SaBTO 2012</a>.</p>
+              <h3>Non-cellular (plasma) blood components</h3>
+              <p>In contrast, fresh frozen plasma, cryoprecipitate or fractionated plasma products are non-cellular blood components that do not contain white cells.</p>
+              <p>Non-cellular blood components do not need to be irradiated or provided as CMV negative (even though CMV can occurr freely in plasma) <a href="javascript:%20showSource('sabto2012')" class="reference">SaBTO 2012, p.
+              2</a>.</p><a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+            </div>
+            <div data-role="collapsible" id="cmv">
+              <h3>Cytomegalovirus (CMV)</h3>
+              <p>"Cytomegalovirus is a herpes virus that gives rise to chronic, persistent and, for the most part, asymptomatic infection in a majority of adults worldwide. More severe disease may occur in certain groups, such as foetuses, neonates and immunocompromised adults." <a href="javascript:%20showSource('sabto2012');" class="reference">SaBTO 2012</a>
+              </p>
+              <p>"Cytomegalovirus (CMV) infection can cause serious morbidity in immunocompromised CMV-negative patients. The risk can be minimised by the use of CMV-antibody-negative (seronegative) blood components. <a href="javascript:%20showWord('leucodepletion')" class="definition">Leucocyte
+              depletion</a> also confers some protection since the virus is associated with white blood cells." <a href="javascript:%20showSource('htm2007');" class="reference">HTM 2007, p. 41</a>
+              </p><a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+            </div>
+            <div data-role="collapsible" id="relatives">
+              <h3>First- or second-degree relatives</h3>
+              <p>"The 'degree of relationship' describes the proportion of genes shared by two blood relatives. A person's first degree relative is a parent, sibling, or child. A first degree relative shares about half of their genes with the person.</p>
+              <p>A second degree relative of a person is an uncle, aunt, nephew, niece, grandparent, grandchild or half- sibling. A second degree relative shares about one quarter of their genes with the person." <a href="javascript:%20showSource('nhsgenetics');" class="reference">NHS NGGEC no year</a>.</p> <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+            </div>
+            <div data-role="collapsible" id="irradiation">
+              <h3>Irradiation</h3>
+              <p>"The major technology for preventing <a href="javascript:%20showWord('gvhd')" class="definition">TA-GvHD</a> is irradiation of blood components to inactivate residual lymphocytes. Gamma rays and X-rays are similar in their ability to inactivate T lymphocytes in blood components at a given absorbed dose." <a href="javascript:%20showSource('bcsh2010');" class="reference">BCSH 2010,
+              p.41</a>
+              </p>
+              <p>"In the UK, a minimum of 25 Gy is recommended, but with the dose to any bag in the container not exceeding 50 Gy. To ensure this dose distribution is achieved, consultation with supporting physicists is mandatory." <a href="javascript:%20showSource('bcsh2010');" class="reference">BCSH 2010,
+              p.41</a>
+              </p>
+              <p>"For at-risk patients, all red cell, platelet and granulocyte concentrates should be irradiated except cryopreserved red cells after deglycerolization. It is not necessary to irradiate fresh frozen plasma, cryoprecipitate or fractionated plasma products (1B)." <a href="javascript:%20showSource('bcsh2010');" class="reference">BCSH 2010,
+              p.36</a>
+              </p><a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+            </div>
+            <div data-role="collapsible" id="leucodepletion">
+              <h3>Leucodepletion</h3>
+              <p>Red cells and platelets supplied through the UK blood services are leucocyte depleted <a href="javascript:%20showSource('bcsh2010');" class="reference">SaBTO 2012, p.1</a>.</p>
+              <p>"Removal of leucocytes to a level of less than one million per component by filtration or during collection of blood components by apheresis is normal practice in a number of EU countries. Advantages of leucodepletion include a marked reduction in alloimmunisation to HLA antigens and in the risk of infection by intracellular viruses such as cytomegalovirus. Leucodepletion of red cells may also be associated with improved outcomes in some groups of patients." <a href="javascript:%20showSource('obu2010');" class="reference">OBU 2010</a>
+              </p><a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+            </div>
+            <div data-role="collapsible" id="gvhd">
+              <h3>Transfusion-Associated Graft versus Host Disease</h3>
+              <p>"TA-GvHD is a very rare but usually fatal complication following transfusion of lymphocyte-containing blood components. [---] The risk associated with an individual transfusion depends on the number and viability of contaminating lymphocytes, susceptibility of the recipient's immune system to their engraftment and degree of immunological (HLA) disparity between donor and patient." <a href="javascript:%20showSource('bcsh2010');" class="reference">BCSH
+              2010, p.37</a>
+              </p>
+              <p>"Transfused donor lymphocytes which are compatible with the recipient, but which recognise the recipient as foreign, can engraft and initiate TA-GvHD. Patients develop skin rash, diarrhoea and abnormal liver function, and deteriorate, with bone marrow failure and death from infection usually within two to three weeks of transfusion." <a href="javascript:%20showSource('htm2007');" class="reference">HTM 2007, p.41</a>
+              </p>
+              <p>"Patients at risk are immunocompromised or those who receive transfusion from a first- or second-degree relative (due to the sharing of an HLA haplotype)." <a href="javascript:%20showSource('htm2007');" class="reference">HTM 2007, p.62</a>
+              </p><a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-theme="b">Back</a>
+            </div>
+          </div>
+          <p>Press to expand an entry.</p>
+          <div class="ui-grid-a">
+            <div class="ui-block-a"> <a href="#references" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left">1.5 References</a>
+            </div>
+            <div class="ui-block-b"> <a href="#front" data-theme="b" data-role="button" data-icon="arrow-r" data-iconpos="right">Main menu</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-role="page" id="list" data-theme="e">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#front" class="listBack">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>2. Indications</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h1>2. Indications</h1>
+          <p>Select an item in the list to view details. Type a keyword into the search box to quickly find indications.</p>
+          <ul id="allIndications" data-filter-theme="c" data-role="listview" data-filter-placeholder="Enter keyword here" data-filter="true" data-dividertheme="d" style="margin-bottom: 20px"></ul>
+          <h3>You have reached the end of the list.</h3>
+        </div>
+      </div>
+      <div data-role="page" id="subset" data-theme="e">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#step1">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>3. Checklist</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h1>3. Checklist (3/3)</h1>
+          <p id="checklistInstructions">Please go back and re-open the checklist page.</p>
+          <br />
+          <ul id="subsetIndications" data-role="listview" style="margin-bottom: 20px"></ul><a href="#step2" data-role="button" data-icon="arrow-l" data-iconpos="left" data-theme="b">Back</a>
+        </div>
+      </div>
+      <div data-role="page" id="step1" data-theme="e">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#front">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>3. Checklist (1/3)</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h1>3. Checklist (1/3)</h1>
+          <p>Answer the question to determine which, if any, of the indications for irradiation or CVM negative are likely to apply.</p>
+          <h3 style="clear: both;">What will you transfuse?</h3>
+          <ul style="clear: both;" data-role="listview" data-theme="b" data-dividertheme="a">
+            <li> <a href="javascript:%20void(0);" onclick="showIndication('relative', '#step1');">1. Blood from a relative of the
+            patient.</a>
+            </li>
+            <li> <a href="javascript:%20void(0);" onclick="showIndication('granulocytes', '#step1');">2. Granulocytes.</a>
+            </li>
+            <li> <a href="javascript:%20void(0);" onclick="showIndication('hla', '#step1');">3. Human Leukocyte Antigen (HLA) matched
+            component.</a>
+            </li>
+            <li> <a href="javascript:%20void(0);" onclick="showIndication('plasma', '#step1');">4. Fresh frozen plasma, cryoprecipitate
+            or fractionated plasma product.</a>
+            </li>
+            <li> <a href="#step2">5. None of the above</a>
+            </li>
+          </ul>
+          <br />
+          <p>Press a button to answer the question.</p>
+          <br /> <a href="#front" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left">Main menu</a>
+        </div>
+      </div>
+      <div data-role="page" id="step2" data-theme="e">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#step1">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>3. Checklist (2/3)</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="b" id="review1">
+            <h3>Review your answers</h3>
+            <p>You have indicated that you will transfuse:</p>
+            <ul>
+              <li>non-HLA-matched</li>
+              <li>red cells or platelets</li>
+              <li>from a donor who is unrelated to the recipient.</li>
+            </ul>
+            <p>If this is incorrect, please go back to the previous screen.</p>
+            <div class="ui-grid-a">
+              <div class="ui-block-a"> <a href="#step1" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left">Back</a>
+              </div>
+              <div class="ui-block-b"> <a href="javascript:%20void(0);" onclick="$('#review1').trigger('collapse');" data-theme="b" data-role="button" data-icon="delete" data-iconpos="right">Close</a>
+              </div>
+            </div>
+          </div>
+          <h1>3. Checklist (2/3)</h1>
+          <p>Answer the question to determine which, if any, of the indications for irradiation or CVM negative are likely to apply.</p>
+          <h3>Who will you transfuse?</h3>
+          <ul data-role="listview" data-theme="b" data-dividertheme="a">
+            <li> <a href="javascript:%20void(0);" onclick="generateSubset('neonatology', '#step2');">1. Fetus, neonate or infant.</a>
+            </li>
+            <li> <a href="javascript:%20void(0);" onclick="showIndication('pregnancy', '#step2');">2. Pregnant woman.</a>
+            </li>
+            <li> <a href="javascript:%20void(0);" onclick="generateSubset('transplant', '#step2');">3. Donor or recipient of bone
+            marrow or stem cell transplant.</a>
+            </li>
+            <li> <a href="javascript:%20void(0);" onclick="generateSubset('cancer', '#step2');">4. Patient with history of Hodgin
+            lymphoma, cancer or chemotherapy with immunesuppressive drugs.</a>
+            </li>
+            <li> <a href="javascript:%20void(0);" onclick="showIndication('aplastic', '#step2');">5. Patient with aplastic anaemia
+            treated with ATG or Campath.</a>
+            </li>
+            <li> <a href="javascript:%20void(0);" onclick="showIndication('immunodeficiency', '#step2');">6. Patient with confirmed or
+            suspected severe T lymphocyte immunodeficiency.</a>
+            </li>
+            <li> <a href="#step3">7. None of the above.</a>
+            </li>
+          </ul>
+          <br />
+          <p>Please select an answer from the list.</p><a href="#step1" data-role="button" data-icon="arrow-l" data-iconpos="left" data-theme="b">Back</a>
+        </div>
+      </div>
+      <div data-role="page" id="step3" data-theme="e">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#step1">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>3. Checklist (3/3)</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="b" id="review2">
+            <h3>Review your answers</h3>
+            <h3>What will you transfuse?</h3>
+            <p>You have indicated that you will transfuse:</p>
+            <ul>
+              <li>non-HLA-matched</li>
+              <li>red cells or platelets</li>
+              <li>from a donor who is unrelated to the recipient.</li>
+            </ul>
+            <h3>Who will you transfuse?</h3>
+            <p>You have indicated that you will transfuse a patient who is <i><u>NOT</u></i>
+              among the following risk groups:</p>
+            <ul>
+              <li>Fetus, neonate or infant.</li>
+              <li>Pregnant woman.</li>
+              <li>Donor or recipient of bone marrow or stem cell transplant.</li>
+              <li>Patient with a history of Hodgin lymphoma, cancer or chemotherapy with immunesuppressive drugs.</li>
+              <li>Aplasic anaemia treated with ATG or Campath.</li>
+              <li>Confirmed or suspected severe T lymphocyte immunodeficiency.</li>
+            </ul>
+            <p>If this is incorrect, please go back to the previous screen.</p>
+            <div class="ui-grid-a">
+              <div class="ui-block-a"> <a href="#step2" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left">Back</a>
+              </div>
+              <div class="ui-block-b"> <a href="javascript:%20void(0);" onclick="$('#review2').trigger('collapse');" data-theme="b" data-role="button" data-icon="delete" data-iconpos="right">Close</a>
+              </div>
+            </div>
+          </div>
+          <h1>3. Checklist (3/3)</h1>
+          <p>
+            <strong>No indications for irradiated or CMV negative cellular blood components could be found based on your answers.</strong>
+          </p>
+          <p>However, it is important to remain vigilant in case the assumptions change. For example if additional medical history becomes available or incorrect information is discovered. Robust information and communication is particular challenging during shared patient care.</p>
+          <h3>Thorough bedside checks</h3>
+          <p>Always check if the patient has a relevant flag or note in their health record, or are in possession of a card noting special requirements.</p>
+          <p>It is very important that bedside checks are completed thoroughly to ensure that the right patient receives the right blood components. This includes rigerously checking patient identity.</p>
+          <h3>Leucodepletion reduces risks</h3>
+          <p>All red cells and platelets supplied through the UK Blood Services are <a href="javascript:%20showWord('leucodepletion')" class="definition">leucodepleted</a>
+            <a href="javascript:%20showSource('bcsh2010');" class="reference">SaBTO 2012,
+          p.1</a>. This reduces the risk of CMV infection, but is not a substitute for irradiation. Take special care if leucodepleted cellular blood components are unavailable.</p>
+          <p>Press the home button to return to the main menu.</p>
+          <div class="ui-grid-a">
+            <div class="ui-block-a"> <a href="#step2" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left">Back</a>
+            </div>
+            <div class="ui-block-b"> <a href="#front" data-theme="b" data-role="button" data-icon="arrow-r" data-iconpos="right">Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-role="page" id="quiz" data-theme="e">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#front">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>4. Quiz</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h1>4. Quiz</h1>
+          <h2 id="quizRound"></h2>
+          <h3>How should
+            <span id="quizArticle"></span>
+            <span id="quizQuestion"></span>
+          </h3>
+          <div id="quizDefinition"></div>
+          <br />
+          <div id="quizOptions">
+            <ul data-role="listview" data-theme="b">
+              <li> <a href="#" onclick="answerQuiz('irradiated-cmv')">1. Irradiated and CMV
+              negative</a>
+              </li>
+              <li> <a href="#" onclick="answerQuiz('irradiated')">2. Irradiated</a>
+              </li>
+              <li> <a href="#" onclick="answerQuiz('cmv')">3. CMV negative</a>
+              </li>
+              <li> <a href="#" onclick="answerQuiz('normal')">4. Special component not
+              required</a>
+              </li>
+              <li> <a href="#" onclick="answerQuiz('maybe')">5. Not enough information</a>
+              </li>
+            </ul>
+          </div>
+          <br />
+          <p>Answer the question by selecting an option from the list. Only one answer is correct.</p>
+          <div class="ui-grid-a">
+            <div class="ui-block-a"> <a href="#" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left" onclick="answerQuiz('previous')">Previous</a>
+            </div>
+            <div class="ui-block-b"> <a href="#" data-icon="arrow-r" data-iconpos="right" onclick="answerQuiz('next')" data-theme="b" data-role="button">Next</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-role="page" id="about" data-theme="e">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#front">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>About the app</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h1>About the app</h1>
+          <p> <b>Special Blood Request</b> is developed by Dr. Brian McClelland, editor of the fourth edition of the Handbook of Transfusion Medicine, and Karl Monsen, a PhD student at The University of Edinburgh.</p>
+          <h2>Purpose</h2>
+          <p>The app aims to make it quick and easy to learn about, look up and test your knowledge of the indications for irradiated and cytomegalovirus (CMV) negative blood components.</p>
+          <h2>Design assumptions</h2>
+          <p> <b>Special Blood Request</b> adhers to current UK national guidelines on irradiation <a href="javascript:%20showSource('bcsh2010')" class="reference">BCSH 2010</a> and CMV negative <a href="javascript:%20showSource('sabto2010')" class="reference">SaBTO 2010</a> blood components.</p>
+          <p>It was designed to meet short term informational needs, as well as encourage deeper learning, by providing quick access to indications and information explaining the rationale behind them, what can go wrong and how to prevent mistakes.</p>
+          <p>The traffic light system is used to communicate when special components are required (red), may be required (amber) or are unlikely to be required (green).</p>
+          <h2>How to use the app</h2>
+          <p>The app has four main sections, accessible from the main menu:</p>
+          <ol class="plainlist">
+            <li> <b>Information</b> - Learn about why cellular blood components need to be supplied as irradiated and CMV negative to patients at risk, and why mistakes can happen in this process.</li>
+            <li> <b>Indications</b> - Find out if a patient, condition or component might require irradiated or CMV negative blood.</li>
+            <li> <b>Checklist</b> - Rule out irrelevant indications based on what component is transfused to whom.</li>
+            <li> <b>Quiz</b> - Test your knowledge of the indications.</li>
+          </ol>
+          <p>Make use of the glossary and reference sections to increase your understanding and access the original sources.</p>
+          <h2>Acknowledgements</h2>
+          <p>The authors would like to acknowledge the support and contributions from (in alphabetical order):</p>
+          <ul class="plainlist">
+            <li>Dr. Shubha Allard, Consultant Haematologist at Barts and NHS Blood and Transplant, and Chair of British Committee for Standards in Haematology.</li>
+            <li>Dr. Paula Bolton-Maggs, Medical Director, Serious Hazards of Transfusion (SHOT).</li>
+            <li>Mr. Amanpreet Dhesi, Regional Lead: Patient Blood Management Team, NHS Blood and Transplant (NHSBT).</li>
+            <li>Dr Lise Estcourt, Research Registrar, NHSBT.</li>
+            <li>Mrs. Sandra Gray, Head of Nursing (Clinical Services), The Scottish National Blood Transfusion Service (SNBTS).</li>
+            <li>Dr. Alastair Nimmo, Consultant Anaesthetist, Royal Infirmary of Edinburgh.</li>
+            <li>Ms. Debbi Poles, Research Analyst, SHOT.</li>
+            <li>Dr. Charles Wallis, ICU Consultant, Western General Hospital Edinburgh.</li>
+            <li>Ms. Alison Watts, Operations Manager, SHOT.</li>
+            <li>Dr. Sharon Zahra, Consultant in Transfusion Medicine, SNBTS.</li>
+          </ul><a href="#front" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left">Back</a>
+        </div>
+      </div>
+      <div data-role="page" id="indication" data-theme="e">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a class="indicationBack" href="#list">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>2. Indications</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h2 style="text-align: center;" id="indicationTitle">Press back to show list of indications</h2>
+          <div id="overallRecommendation"></div>
+          <div id="pageDefinition"></div>
+          <br /> <a href="#list" data-theme="b" data-role="button" data-icon="arrow-l" data-iconpos="left" class="indicationBack">Back</a>
+        </div>
+      </div>
+      <div data-role="page" id="quizAnswer" data-theme="e">
+        <div data-role="header" data-theme="b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a custom">
+              <a href="#front">
+                <img src="logo-up.png" style="height: 3.8em; padding-left: 5px;" />
+              </a>
+            </div>
+            <div class="ui-block-b custom">
+              <p>4. Quiz</p>
+            </div>
+          </div>
+        </div>
+        <div data-role="content">
+          <h2 id="quizTitle"></h2>
+          <h3 id="quizVerdict">Press next question to show a question.</h3>
+          <p id="quizCorrect"></p>
+          <div id="quizRecommendation" style="display: none; text-align: center; border: 2px dotted #000;"></div><a href="#" data-theme="b" data-icon="arrow-r" data-iconpos="right" data-rel="back" data-role="button">Next question</a>
+        </div>
+      </div>
+      <p style="display: none; text-align: center;font-family: arial, sans-serif; font-size:15px;">We're listening! Please take a moment to leave feedback.
+        <br />
+        <br /> <a href="javascript:openEvaluation();" id="evaluationButton">Leave
+      feedback!</a>
+      </p>
+      <br />
+    </div>
+    <script type='text/javascript'>
+      // http://jsfiddle.net/zeelux/B4vN2/
+      (function() {
+        'use strict';
+        ko.extenders.paging = function(target, pageSize) {
+          var _pageSize = ko.observable(pageSize || 10),
+            // default pageSize to 10
+            _currentPage = ko.observable(1); // default current page to 1
+          target.pageSize = ko.computed({
+            read: _pageSize,
+            write: function(newValue) {
+              if (newValue > 0) {
+                _pageSize(newValue);
+              } else {
+                _pageSize(10);
+              }
+            }
+          });
+          target.currentPage = ko.computed({
+            read: _currentPage,
+            write: function(newValue) {
+              if (newValue > target.pageCount()) {
+                _currentPage(target.pageCount());
+              } else if (newValue <= 0) {
+                _currentPage(1);
+              } else {
+                _currentPage(newValue);
+              }
+              $("#selector").selectmenu();
+              $("#questionList").trigger("create");
+            }
+          });
+          target.pageCount = ko.computed(function() {
+            return Math.ceil(target().length / target.pageSize()) || 1;
+          });
+          target.currentPageData = ko.computed(function() {
+            var pageSize = _pageSize(),
+              pageIndex = _currentPage(),
+              startIndex = pageSize * (pageIndex - 1),
+              endIndex = pageSize * pageIndex;
+            return target().slice(startIndex, endIndex);
+          });
+          target.moveFirst = function() {
+            target.currentPage(1);
+          };
+          target.movePrevious = function() {
+            target.currentPage(target.currentPage() - 1);
+          };
+          target.moveNext = function() {
+            target.currentPage(target.currentPage() + 1);
+          };
+          target.moveLast = function() {
+            target.currentPage(target.pageCount());
+          };
+          return target;
+        };
+      }());
+      ko.bindingHandlers.jqmEnhance = {
+        update: function(element, valueAccessor) {
+          // Get jQuery Mobile to enhance elements within this element
+          $(element).trigger("create");
+        }
+      };
+      var ViewModel = function() {
+        this.questionBank = ko.observableArray([{
+          id: 0,
+          value: "Leucodepletion is as effective as irradiation in preventing TA-GvHD.",
+          options: ["Please select", "True", "False", "Don't know"],
+          selected: ko.observable("Please select")
+        }, {
+          id: 1,
+          value: "Platelets, white cells and red cells are examples of cellular blood components.",
+          options: ["Please select", "True", "False", "Don't know"],
+          selected: ko.observable("Please select")
+        }, {
+          id: 2,
+          value: "Platelets, white cells and red cells are examples of cellular blood components.",
+          options: ["Please select", "Irradiated and CMV-negative", "Irradiated", "CMV-negative", "Special component not required", "Don't know"],
+          selected: ko.observable("Please select")
+        }]).extend({
+          paging: 1
+        })
+      };
+      ko.applyBindings(new ViewModel());
+      window.onload = function() {
+        $("#loadme").load('http://it4se.com:8080/kdmon/specialtrial/master/app-jqm142.html');
+
+      }
+    </script>
+  </body>
+
+</html>
